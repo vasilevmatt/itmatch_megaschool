@@ -11,7 +11,7 @@
   --tg-theme-secondary-bg-color: #ffffff;
   --tg-theme-section-separator-color: #e5e5e5;
   color: var(--tg-theme-text-color);
-  background-color: var(--tg-theme-bg-color);
+  background-color: var(--tg-theme-bg-color) !important;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,7 +32,7 @@ html, body, #root {
 body {
   margin: 0;
   min-height: 100%;
-  background: var(--tg-theme-bg-color, #f4f6fb);
+  background: var(--tg-theme-bg-color, #f4f6fb) !important;
   color: var(--tg-theme-text-color, #0f172a);
   overscroll-behavior: contain;
   touch-action: manipulation;
