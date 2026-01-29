@@ -2,11 +2,13 @@
   font-family: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
   line-height: 1.4;
   font-weight: 400;
-  color: #0f172a;
-  background-color: #0f172a;
+  color: var(--tg-theme-text-color, #0f172a);
+  background-color: var(--tg-theme-bg-color, #f4f6fb);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color-scheme: light dark;
+  --bottom-nav-height: 90px;
 }
 
 *,
@@ -15,13 +17,17 @@
   box-sizing: border-box;
 }
 
+html, body, #root {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  min-height: 100vh;
-  background: radial-gradient(circle at 20% 20%, rgba(255, 108, 171, 0.2), transparent 25%),
-    radial-gradient(circle at 80% 0%, rgba(115, 102, 255, 0.25), transparent 25%),
-    #0f172a;
-  color: #0f172a;
+  min-height: 100%;
+  background: var(--tg-theme-bg-color, #f4f6fb);
+  color: var(--tg-theme-text-color, #0f172a);
+  overscroll-behavior: contain;
+  touch-action: manipulation;
 }
 
 a {
