@@ -117,6 +117,7 @@ export const TelegramProvider: React.FC<TelegramProviderProps> = ({ children }) 
 
   useEffect(() => {
     const tg = window.Telegram?.WebApp;
+    const APP_BG = '#f5f7fb';
     
     if (tg) {
       tg.ready();
@@ -125,6 +126,10 @@ export const TelegramProvider: React.FC<TelegramProviderProps> = ({ children }) 
       setWebApp(tg);
       setUser(tg.initDataUnsafe.user || null);
       setIsReady(true);
+
+      // Явно фиксируем фон нашего приложения, чтобы Telegram не заменял его своей темой.
+      tg.setBackgroundColor?.(APP_BG);
+      document.body.style.backgroundColor = APP_BG;
     } else {
       console.warn('Telegram WebApp не найден. Работаем в режиме разработки.');
       // Мок-данные для разработки
@@ -135,6 +140,7 @@ export const TelegramProvider: React.FC<TelegramProviderProps> = ({ children }) 
         username: 'testuser'
       });
       setIsReady(true);
+      document.body.style.backgroundColor = APP_BG;
     }
   }, []);
 
