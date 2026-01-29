@@ -144,6 +144,10 @@
   box-shadow: 0 12px 26px rgba(15, 23, 42, 0.18);
 }
 
+.party-card[data-bg] {
+  background-image: attr(data-bg url);
+}
+
 .party-featured {
   grid-column: span 2;
   min-height: 180px;

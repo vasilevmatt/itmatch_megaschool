@@ -125,35 +125,6 @@ export const TelegramProvider: React.FC<TelegramProviderProps> = ({ children }) 
       setWebApp(tg);
       setUser(tg.initDataUnsafe.user || null);
       setIsReady(true);
-
-      const theme = {
-        bg: tg.themeParams.bg_color || '#ffffff',
-        text: tg.themeParams.text_color || '#0f172a',
-        hint: tg.themeParams.hint_color || '#8b98a5',
-        link: tg.themeParams.link_color || '#2481cc',
-        button: tg.themeParams.button_color || '#2481cc',
-        buttonText: tg.themeParams.button_text_color || '#ffffff',
-        secondaryBg: (tg.themeParams.bg_color && `${tg.themeParams.bg_color}E6`) || '#f4f6fb',
-        separator: '#e5e5e5'
-      };
-
-      document.documentElement.style.setProperty('--tg-theme-bg-color', theme.bg);
-      document.documentElement.style.setProperty('--tg-theme-text-color', theme.text);
-      document.documentElement.style.setProperty('--tg-theme-hint-color', theme.hint);
-      document.documentElement.style.setProperty('--tg-theme-link-color', theme.link);
-      document.documentElement.style.setProperty('--tg-theme-button-color', theme.button);
-      document.documentElement.style.setProperty('--tg-theme-button-text-color', theme.buttonText);
-      document.documentElement.style.setProperty('--tg-theme-secondary-bg-color', theme.secondaryBg);
-      document.documentElement.style.setProperty('--tg-theme-section-separator-color', theme.separator);
-
-      document.body.style.backgroundColor = theme.bg;
-
-      if (typeof tg.setHeaderColor === 'function') {
-        tg.setHeaderColor('bg_color');
-      }
-      if (typeof tg.setBackgroundColor === 'function') {
-        tg.setBackgroundColor(theme.bg);
-      }
     } else {
       console.warn('Telegram WebApp не найден. Работаем в режиме разработки.');
       // Мок-данные для разработки
@@ -164,16 +135,6 @@ export const TelegramProvider: React.FC<TelegramProviderProps> = ({ children }) 
         username: 'testuser'
       });
       setIsReady(true);
-
-      document.documentElement.style.setProperty('--tg-theme-bg-color', '#f4f6fb');
-      document.documentElement.style.setProperty('--tg-theme-text-color', '#0f172a');
-      document.documentElement.style.setProperty('--tg-theme-hint-color', '#8b98a5');
-      document.documentElement.style.setProperty('--tg-theme-link-color', '#2481cc');
-      document.documentElement.style.setProperty('--tg-theme-button-color', '#7366ff');
-      document.documentElement.style.setProperty('--tg-theme-button-text-color', '#ffffff');
-      document.documentElement.style.setProperty('--tg-theme-secondary-bg-color', '#ffffff');
-      document.documentElement.style.setProperty('--tg-theme-section-separator-color', '#e5e5e5');
-      document.body.style.backgroundColor = '#f4f6fb';
     }
   }, []);
 

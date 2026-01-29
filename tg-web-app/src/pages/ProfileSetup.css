@@ -24,6 +24,7 @@
   background: linear-gradient(90deg, #ff6cab 0%, #7366ff 100%);
   border-radius: inherit;
   transition: width 0.25s ease;
+  width: calc((var(--progress-step, 1) / 3) * 100%);
 }
 
 .setup-content {

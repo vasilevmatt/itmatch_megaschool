@@ -108,9 +108,9 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
     <div className="profile-setup">
       <div className="setup-header">
         <div className="progress-bar">
-          <div 
-            className="progress-fill" 
-            style={{ width: `${(step / 3) * 100}%` }}
+          <div
+            className="progress-fill"
+            style={{ ['--progress-step' as any]: step }}
           />
         </div>
         <h1>Настройка профиля</h1>

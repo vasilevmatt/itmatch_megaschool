@@ -2,8 +2,16 @@
   font-family: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
   line-height: 1.4;
   font-weight: 400;
-  color: var(--tg-theme-text-color, #0f172a);
-  background-color: var(--tg-theme-bg-color, #f4f6fb);
+  --tg-theme-bg-color: #f5f7fb;
+  --tg-theme-text-color: #0f172a;
+  --tg-theme-hint-color: #8b98a5;
+  --tg-theme-link-color: #2481cc;
+  --tg-theme-button-color: #7366ff;
+  --tg-theme-button-text-color: #ffffff;
+  --tg-theme-secondary-bg-color: #ffffff;
+  --tg-theme-section-separator-color: #e5e5e5;
+  color: var(--tg-theme-text-color);
+  background-color: var(--tg-theme-bg-color);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

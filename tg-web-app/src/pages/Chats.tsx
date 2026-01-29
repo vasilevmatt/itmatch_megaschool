@@ -70,7 +70,7 @@ const Chats: React.FC = () => {
       </div>
 
       <div className="parties-grid">
-        <div className="party-card party-featured" style={{ backgroundImage: `url(${partyBanner.cover})` }}>
+        <div className="party-card party-featured" data-bg={partyBanner.cover}>
           <div className="party-overlay" />
           <div className="party-content">
             <div className="party-date">{partyBanner.date}</div>
@@ -79,7 +79,7 @@ const Chats: React.FC = () => {
         </div>
 
         {partyCards.map((party) => (
-          <div key={party.title} className="party-card" style={{ backgroundImage: `url(${party.cover})` }}>
+          <div key={party.title} className="party-card" data-bg={party.cover}>
             <div className="party-overlay" />
             <div className="party-content">
               <div className="party-date">{party.date}</div>
