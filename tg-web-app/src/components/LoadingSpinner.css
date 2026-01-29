@@ -18,8 +18,8 @@
 .spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid var(--tg-theme-hint-color, #999);
-  border-top: 3px solid var(--tg-theme-button-color, #007aff);
+  border: 3px solid var(--itmatch-theme-hint-color, #999);
+  border-top: 3px solid var(--itmatch-theme-button-color, #007aff);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -38,7 +38,7 @@
 
 .loading-text {
   margin-top: 1rem;
-  color: var(--tg-theme-hint-color, #999);
+  color: var(--itmatch-theme-hint-color, #999);
   font-size: 0.9rem;
 }
 

@@ -63,12 +63,12 @@
 
 .cards-counter {
   text-align: center;
-  color: var(--tg-theme-hint-color, #64748b);
+  color: var(--itmatch-theme-hint-color, #64748b);
   font-weight: 600;
 }
 
 .no-candidates {
-  background: var(--tg-theme-secondary-bg-color, #ffffff);
+  background: var(--itmatch-theme-secondary-bg-color, #ffffff);
   border-radius: 20px;
   padding: 2rem;
   text-align: center;
@@ -82,10 +82,10 @@
 
 .no-candidates h2 {
   margin: 0 0 0.35rem 0;
-  color: var(--tg-theme-text-color, #0f172a);
+  color: var(--itmatch-theme-text-color, #0f172a);
 }
 
 .no-candidates p {
   margin: 0 0 1rem 0;
-  color: var(--tg-theme-hint-color, #64748b);
+  color: var(--itmatch-theme-hint-color, #64748b);
 }

@@ -14,7 +14,7 @@
   aspect-ratio: 1;
   border-radius: 12px;
   overflow: hidden;
-  background: var(--tg-theme-secondary-bg-color, #f1f1f1);
+  background: var(--itmatch-theme-secondary-bg-color, #f1f1f1);
 }
 
 .photo-item img {
@@ -70,8 +70,8 @@
   position: absolute;
   bottom: 8px;
   left: 8px;
-  background: var(--tg-theme-button-color, #007aff);
-  color: var(--tg-theme-button-text-color, white);
+  background: var(--itmatch-theme-button-color, #007aff);
+  color: var(--itmatch-theme-button-text-color, white);
   padding: 4px 8px;
   border-radius: 12px;
   font-size: 0.75rem;
@@ -80,7 +80,7 @@
 
 .photo-upload-slot {
   aspect-ratio: 1;
-  border: 2px dashed var(--tg-theme-hint-color, #999);
+  border: 2px dashed var(--itmatch-theme-hint-color, #999);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -98,12 +98,12 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  color: var(--tg-theme-hint-color, #999);
+  color: var(--itmatch-theme-hint-color, #999);
   transition: color 0.2s;
 }
 
 .upload-btn:hover {
-  color: var(--tg-theme-button-color, #007aff);
+  color: var(--itmatch-theme-button-color, #007aff);
 }
 
 .upload-btn:disabled {
@@ -123,7 +123,7 @@
 
 .photo-upload-info {
   text-align: center;
-  color: var(--tg-theme-hint-color, #999);
+  color: var(--itmatch-theme-hint-color, #999);
 }
 
 .photo-upload-info p {

@@ -4,7 +4,7 @@
 
 .app {
   min-height: 100vh;
-  background: var(--tg-theme-bg-color, #f4f6fb);
+  background: var(--itmatch-theme-bg-color, #f4f6fb);
   padding-bottom: calc(var(--bottom-nav-height, 90px) + env(safe-area-inset-bottom));
 }
 

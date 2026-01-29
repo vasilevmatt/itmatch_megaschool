@@ -30,7 +30,7 @@
 }
 
 .message-content {
-  background: var(--tg-theme-secondary-bg-color, #f1f1f1);
+  background: var(--itmatch-theme-secondary-bg-color, #f1f1f1);
   border-radius: 18px;
   padding: 8px 12px;
   position: relative;
@@ -38,8 +38,8 @@
 }
 
 .message-bubble.own .message-content {
-  background: var(--tg-theme-button-color, #007aff);
-  color: var(--tg-theme-button-text-color, white);
+  background: var(--itmatch-theme-button-color, #007aff);
+  color: var(--itmatch-theme-button-text-color, white);
 }
 
 .message-text {
@@ -79,7 +79,7 @@
 }
 
 .message-status.read {
-  color: var(--tg-theme-button-color, #007aff);
+  color: var(--itmatch-theme-button-color, #007aff);
 }
 
 .message-bubble.other .message-meta {

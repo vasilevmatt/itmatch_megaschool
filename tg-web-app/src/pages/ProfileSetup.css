@@ -8,7 +8,7 @@
 .setup-header {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: var(--tg-theme-text-color, #0f172a);
+  color: var(--itmatch-theme-text-color, #0f172a);
 }
 
 .progress-bar {
@@ -28,7 +28,7 @@
 }
 
 .setup-content {
-  background: var(--tg-theme-secondary-bg-color, #ffffff);
+  background: var(--itmatch-theme-secondary-bg-color, #ffffff);
   border-radius: 20px;
   padding: 1.25rem;
   box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
@@ -40,7 +40,7 @@
 .step h2 {
   margin: 0 0 0.75rem 0;
   font-size: 1.25rem;
-  color: var(--tg-theme-text-color, #0f172a);
+  color: var(--itmatch-theme-text-color, #0f172a);
 }
 
 .form-group {
@@ -52,18 +52,18 @@
 
 .form-group label {
   font-weight: 600;
-  color: var(--tg-theme-text-color, #0f172a);
+  color: var(--itmatch-theme-text-color, #0f172a);
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
   border: 1px solid rgba(15, 23, 42, 0.08);
-  background: var(--tg-theme-section-bg-color, #f8fafc);
+  background: var(--itmatch-theme-section-bg-color, #f8fafc);
   border-radius: 14px;
   padding: 0.9rem 1rem;
   font-size: 1rem;
-  color: var(--tg-theme-text-color, #0f172a);
+  color: var(--itmatch-theme-text-color, #0f172a);
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }

@@ -2,16 +2,16 @@
   font-family: 'Inter', 'SF Pro Display', system-ui, -apple-system, sans-serif;
   line-height: 1.4;
   font-weight: 400;
-  --tg-theme-bg-color: #f5f7fb;
-  --tg-theme-text-color: #0f172a;
-  --tg-theme-hint-color: #8b98a5;
-  --tg-theme-link-color: #2481cc;
-  --tg-theme-button-color: #7366ff;
-  --tg-theme-button-text-color: #ffffff;
-  --tg-theme-secondary-bg-color: #ffffff;
-  --tg-theme-section-separator-color: #e5e5e5;
-  color: var(--tg-theme-text-color);
-  background-color: var(--tg-theme-bg-color) !important;
+  theme-bg-color: #f5f7fb;
+  --itmatch-theme-text-color: #0f172a;
+  --itmatch-theme-hint-color: #8b98a5;
+  --itmatch-theme-link-color: #2481cc;
+  --itmatch-theme-b--itmatch-utton-color: #7366ff;
+  --itmatch-theme-button-text-color: #ffffff;
+  --itmatch-theme-secondary-bg-color: #ffffff;
+  --itmatch-theme-section-separator-color: #e5e5e5;
+  color: var(--itmatch-theme-text-color);
+  background-color: var(--itmatch-theme-bg-color) !important;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,8 +32,8 @@ html, body, #root {
 body {
   margin: 0;
   min-height: 100%;
-  background: var(--tg-theme-bg-color, #f4f6fb) !important;
-  color: var(--tg-theme-text-color, #0f172a);
+  background: var(--itmatch-theme-bg-color, #f4f6fb) !important;
+  color: var(--itmatch-theme-text-color, #0f172a);
   overscroll-behavior: contain;
   touch-action: manipulation;
 }

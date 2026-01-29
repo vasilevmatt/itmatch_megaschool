@@ -14,7 +14,7 @@
   padding: 1.5rem;
   text-align: center;
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
-  color: var(--tg-theme-text-color, #0f172a);
+  color: var(--itmatch-theme-text-color, #0f172a);
 }
 
 .community-icon {
@@ -28,7 +28,7 @@
 
 .community-hero p {
   margin: 0;
-  color: var(--tg-theme-hint-color, #64748b);
+  color: var(--itmatch-theme-hint-color, #64748b);
 }
 
 .community-card {
@@ -45,7 +45,7 @@
 .community-card ul {
   margin: 0;
   padding-left: 1.2rem;
-  color: var(--tg-theme-text-color, #0f172a);
+  color: var(--itmatch-theme-text-color, #0f172a);
 }
 
 .community-card li + li {
@@ -54,6 +54,6 @@
 
 .community-hint {
   margin-top: 0.75rem;
-  color: var(--tg-theme-hint-color, #94a3b8);
+  color: var(--itmatch-theme-hint-color, #94a3b8);
   font-size: 0.9rem;
 }

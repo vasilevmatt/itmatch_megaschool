@@ -43,7 +43,7 @@
   border-radius: 16px;
   padding: 0.85rem;
   text-decoration: none;
-  color: var(--tg-theme-text-color, #0f172a);
+  color: var(--itmatch-theme-text-color, #0f172a);
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
 }
 
@@ -98,12 +98,12 @@
 }
 
 .chat-time {
-  color: var(--tg-theme-hint-color, #94a3b8);
+  color: var(--itmatch-theme-hint-color, #94a3b8);
   font-size: 0.9rem;
 }
 
 .chat-last {
-  color: var(--tg-theme-hint-color, #64748b);
+  color: var(--itmatch-theme-hint-color, #64748b);
   font-size: 0.95rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -111,7 +111,7 @@
 }
 
 .chat-arrow {
-  color: var(--tg-theme-hint-color, #cbd5e1);
+  color: var(--itmatch-theme-hint-color, #cbd5e1);
   font-size: 1.5rem;
 }
 

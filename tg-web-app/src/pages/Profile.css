@@ -15,7 +15,7 @@
   margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--tg-theme-text-color, #000);
+  color: var(--itmatch-theme-text-color, #000);
 }
 
 .profile.empty-state {
@@ -42,7 +42,7 @@
 
 .profile-hero p {
   margin: 0 0 1rem 0;
-  color: var(--tg-theme-hint-color, #6b7280);
+  color: var(--itmatch-theme-hint-color, #6b7280);
 }
 
 .empty-actions {
@@ -57,7 +57,7 @@
 }
 
 .profile-photos {
-  background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+  background: var(--itmatch-theme-secondary-bg-color, #f8f9fa);
   border-radius: 16px;
   padding: 1.5rem;
 }
@@ -66,7 +66,7 @@
   margin: 0 0 1rem 0;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--tg-theme-text-color, #000);
+  color: var(--itmatch-theme-text-color, #000);
 }
 
 .photos-grid {
@@ -79,7 +79,7 @@
   aspect-ratio: 1;
   border-radius: 12px;
   overflow: hidden;
-  background: var(--tg-theme-bg-color, white);
+  background: var(--itmatch-theme-bg-color, white);
 }
 
 .photo-item img {
@@ -95,7 +95,7 @@
 }
 
 .info-section {
-  background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+  background: var(--itmatch-theme-secondary-bg-color, #f8f9fa);
   border-radius: 16px;
   padding: 1.5rem;
 }
@@ -104,7 +104,7 @@
   margin: 0 0 1rem 0;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--tg-theme-text-color, #000);
+  color: var(--itmatch-theme-text-color, #000);
 }
 
 .form-group {
@@ -119,17 +119,17 @@
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: var(--tg-theme-text-color, #000);
+  color: var(--itmatch-theme-text-color, #000);
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid var(--tg-theme-section-separator-color, #e5e5e5);
+  border: 1px solid var(--itmatch-theme-section-separator-color, #e5e5e5);
   border-radius: 12px;
-  background: var(--tg-theme-bg-color, white);
-  color: var(--tg-theme-text-color, #000);
+  background: var(--itmatch-theme-bg-color, white);
+  color: var(--itmatch-theme-text-color, #000);
   font-family: inherit;
   font-size: 1rem;
   transition: border-color 0.2s;
@@ -138,13 +138,13 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--tg-theme-button-color, #007aff);
+  border-color: var(--itmatch-theme-button-color, #007aff);
 }
 
 .form-group input:disabled,
 .form-group textarea:disabled {
-  background: var(--tg-theme-secondary-bg-color, #f8f9fa);
-  color: var(--tg-theme-hint-color, #999);
+  background: var(--itmatch-theme-secondary-bg-color, #f8f9fa);
+  color: var(--itmatch-theme-hint-color, #999);
 }
 
 .form-group textarea {
@@ -155,7 +155,7 @@
 .form-group small {
   display: block;
   margin-top: 0.25rem;
-  color: var(--tg-theme-hint-color, #999);
+  color: var(--itmatch-theme-hint-color, #999);
   font-size: 0.8rem;
 }
 
@@ -179,7 +179,7 @@
   right: 1rem;
   display: flex;
   gap: 1rem;
-  background: var(--tg-theme-bg-color, white);
+  background: var(--itmatch-theme-bg-color, white);
   padding: 1rem;
   border-radius: 16px;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
@@ -196,7 +196,7 @@
 }
 
 .metric-card {
-  background: var(--tg-theme-secondary-bg-color, #f8fafc);
+  background: var(--itmatch-theme-secondary-bg-color, #f8fafc);
   border: 1px solid rgba(15, 23, 42, 0.06);
   border-radius: 14px;
   padding: 0.9rem;
@@ -205,19 +205,19 @@
 
 .metric-label {
   font-size: 0.85rem;
-  color: var(--tg-theme-hint-color, #94a3b8);
+  color: var(--itmatch-theme-hint-color, #94a3b8);
 }
 
 .metric-value {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0.2rem 0;
-  color: var(--tg-theme-text-color, #0f172a);
+  color: var(--itmatch-theme-text-color, #0f172a);
 }
 
 .metric-hint {
   font-size: 0.85rem;
-  color: var(--tg-theme-hint-color, #94a3b8);
+  color: var(--itmatch-theme-hint-color, #94a3b8);
 }
 
 @media (max-width: 480px) {

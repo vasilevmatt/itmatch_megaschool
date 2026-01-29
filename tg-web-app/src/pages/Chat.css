@@ -6,15 +6,15 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: var(--tg-theme-bg-color, white);
+  background: var(--itmatch-theme-bg-color, white);
 }
 
 .chat-header {
   position: sticky;
   top: 0;
-  background: var(--tg-theme-bg-color, #fff);
+  background: var(--itmatch-theme-bg-color, #fff);
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--tg-theme-section-separator-color, #e5e5e5);
+  border-bottom: 1px solid var(--itmatch-theme-section-separator-color, #e5e5e5);
   z-index: 2;
 }
 
@@ -43,7 +43,7 @@
 }
 
 .chat-subtitle {
-  color: var(--tg-theme-hint-color, #94a3b8);
+  color: var(--itmatch-theme-hint-color, #94a3b8);
   font-size: 0.9rem;
 }
 
@@ -74,7 +74,7 @@
 
 .no-messages p {
   margin: 0;
-  color: var(--tg-theme-hint-color, #999);
+  color: var(--itmatch-theme-hint-color, #999);
   font-size: 1.1rem;
 }
 
@@ -83,8 +83,8 @@
   left: 0;
   right: 0;
   bottom: calc(var(--bottom-nav-height));
-  background: var(--tg-theme-bg-color, white);
-  border-top: 1px solid var(--tg-theme-section-separator-color, #e5e5e5);
+  background: var(--itmatch-theme-bg-color, white);
+  border-top: 1px solid var(--itmatch-theme-section-separator-color, #e5e5e5);
   padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
   box-shadow: 0 -8px 22px rgba(15, 23, 42, 0.08);
   z-index: 1500;
@@ -94,7 +94,7 @@
   display: flex;
   align-items: flex-end;
   gap: 0.5rem;
-  background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+  background: var(--itmatch-theme-secondary-bg-color, #f8f9fa);
   border-radius: 16px;
   padding: 10px 14px;
 }
@@ -109,19 +109,19 @@
   font-size: 1rem;
   line-height: 1.4;
   max-height: 100px;
-  color: var(--tg-theme-text-color, #000);
+  color: var(--itmatch-theme-text-color, #000);
 }
 
 .input-container textarea::placeholder {
-  color: var(--tg-theme-hint-color, #999);
+  color: var(--itmatch-theme-hint-color, #999);
 }
 
 .send-btn {
   width: 36px;
   height: 36px;
   border: none;
-  background: var(--tg-theme-button-color, #007aff);
-  color: var(--tg-theme-button-text-color, white);
+  background: var(--itmatch-theme-button-color, #007aff);
+  color: var(--itmatch-theme-button-text-color, white);
   border-radius: 50%;
   display: flex;
   align-items: center;
