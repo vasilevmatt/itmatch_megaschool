@@ -14,12 +14,6 @@ RUN npm ci
 # Копируем исходный код
 COPY . .
 
-# Переменные окружения для сборки
-ARG VITE_BACKEND_URL
-ARG VITE_BOT_USERNAME
-ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
-ENV VITE_BOT_USERNAME=$VITE_BOT_USERNAME
-
 # Собираем приложение
 RUN npm run build
 

@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 import { useTelegram } from '../contexts/TelegramContext';
 import PhotoUpload from '../components/PhotoUpload';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { getMatches, getCachedCandidates } from '../services/mockApi';
 import './Profile.css';
 
 const Profile: React.FC = () => {
   const { user, updateUser, loading } = useUser();
-  const { webApp } = useTelegram();
+  const { webApp, user: telegramUser } = useTelegram();
+  const navigate = useNavigate();
+  const [matchesCount, setMatchesCount] = useState(0);
+  const [discoverPool, setDiscoverPool] = useState(0);
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
@@ -73,8 +78,37 @@ const Profile: React.FC = () => {
     setEditing(false);
   };
 
-  if (loading || !user) {
+  useEffect(() => {
+    const bootstrap = async () => {
+      if (telegramUser?.id) {
+        const matches = await getMatches(telegramUser.id);
+        setMatchesCount(matches.length);
+      }
+      const pool = getCachedCandidates(50);
+      setDiscoverPool(pool.length);
+    };
+    bootstrap();
+  }, [telegramUser]);
+
+  if (loading) {
     return <LoadingSpinner />;
+  }
+
+  if (!user) {
+    return (
+      <div className="profile empty-state">
+        <div className="profile-hero">
+          <div className="hero-icon">👋</div>
+          <h1>Профиль ещё не создан</h1>
+          <p>Заполните несколько полей и начните свайпить уже через минуту.</p>
+          <div className="empty-actions">
+            <button className="btn btn-primary" onClick={() => navigate('/setup')}>
+              Создать профиль
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -186,6 +220,24 @@ const Profile: React.FC = () => {
                   onChange={(e) => handlePreferenceChange('maxDistance', parseInt(e.target.value))}
                 />
               )}
+            </div>
+          </div>
+
+          <div className="info-section grid">
+            <div className="metric-card">
+              <div className="metric-label">Совпадений</div>
+              <div className="metric-value">{matchesCount}</div>
+              <div className="metric-hint">Всего матчей</div>
+            </div>
+            <div className="metric-card">
+              <div className="metric-label">Кандидаты</div>
+              <div className="metric-value">{discoverPool}</div>
+              <div className="metric-hint">Доступно в ленте</div>
+            </div>
+            <div className="metric-card">
+              <div className="metric-label">Активность</div>
+              <div className="metric-value">Онлайн</div>
+              <div className="metric-hint">Последние 5 мин</div>
             </div>
           </div>
         </div>

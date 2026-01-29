@@ -2,23 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTelegram } from '../contexts/TelegramContext';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { getMatches, type MatchPreview } from '../services/mockApi';
+import placeholderAvatar from '../assets/placeholder-avatar.svg';
 import './Matches.css';
-
-interface Match {
-  matchId: string;
-  user: {
-    _id: string;
-    firstName: string;
-    lastName?: string;
-    photos: string[];
-    age: number;
-  };
-  matchedAt: string;
-}
 
 const Matches: React.FC = () => {
   const { user: telegramUser } = useTelegram();
-  const [matches, setMatches] = useState<Match[]>([]);
+  const [matches, setMatches] = useState<MatchPreview[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchMatches = async () => {
@@ -26,12 +16,8 @@ const Matches: React.FC = () => {
     
     try {
       setLoading(true);
-      const response = await fetch(`/api/matches/list/${telegramUser.id}`);
-      
-      if (response.ok) {
-        const data = await response.json();
-        setMatches(data);
-      }
+      const data = await getMatches(telegramUser.id);
+      setMatches(data);
     } catch (error) {
       console.error('Ошибка загрузки матчей:', error);
     } finally {
@@ -76,15 +62,15 @@ const Matches: React.FC = () => {
         {matches.map((match) => (
           <Link 
             key={match.matchId} 
-            to={`/chat/${match.matchId}`}
-            className="match-card"
-          >
-            <div className="match-photo">
-              <img 
-                src={match.user.photos[0]} 
-                alt={match.user.firstName}
-                onError={(e) => {
-                  e.currentTarget.src = '/placeholder-avatar.png';
+              to={`/chat/${match.matchId}`}
+              className="match-card"
+            >
+              <div className="match-photo">
+                <img 
+                  src={match.user.photos[0] || placeholderAvatar} 
+                  alt={match.user.firstName}
+                  onError={(e) => {
+                  e.currentTarget.src = placeholderAvatar;
                 }}
               />
             </div>

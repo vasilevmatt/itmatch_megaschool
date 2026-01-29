@@ -1,0 +1,90 @@
+.swipe-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 24px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 24px 40px rgba(15, 23, 42, 0.25);
+  transform: translateY(0);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff; /* плотный фон под фото */
+  z-index: 2;
+}
+
+.swipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 48px rgba(15, 23, 42, 0.3);
+}
+
+.swipe-card--disabled {
+  filter: grayscale(0.2);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.swipe-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.18) 0%, rgba(15, 23, 42, 0.9) 100%);
+}
+
+.swipe-card__info {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.25rem;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.swipe-card__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.swipe-card__title h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.swipe-card__age {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.swipe-card__badge {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.swipe-card__bio {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+  opacity: 0.92;
+}
+
+.swipe-card__meta {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .swipe-card {
+    border-radius: 18px;
+  }
+}

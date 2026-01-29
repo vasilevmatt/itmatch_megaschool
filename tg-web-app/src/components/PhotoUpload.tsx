@@ -18,46 +18,36 @@ const PhotoUpload: React.FC<PhotoUploadProps> = ({
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const readFileAsDataUrl = (file: File) =>
+    new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(file);
+    });
+
   const handleFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files || files.length === 0) return;
 
     if (photos.length + files.length > maxPhotos) {
-      webApp?.showAlert(`Можно загрузить максимум ${maxPhotos} фото`);
+      webApp?.showAlert?.(`Можно загрузить максимум ${maxPhotos} фото`);
       return;
     }
 
     setUploading(true);
     
     try {
-      const uploadPromises = Array.from(files).map(async (file) => {
-        const formData = new FormData();
-        formData.append('photo', file);
-        
-        const response = await fetch('/api/upload/photo', {
-          method: 'POST',
-          headers: {
-            'X-Telegram-Init-Data': webApp?.initData || ''
-          },
-          body: formData
-        });
-        
-        if (!response.ok) {
-          throw new Error('Ошибка загрузки');
-        }
-        
-        const data = await response.json();
-        return data.url;
-      });
-      
-      const uploadedUrls = await Promise.all(uploadPromises);
+      const uploadedUrls = await Promise.all(
+        Array.from(files).map(readFileAsDataUrl)
+      );
       onChange([...photos, ...uploadedUrls]);
       
-      webApp?.HapticFeedback.notificationOccurred('success');
+      webApp?.HapticFeedback?.notificationOccurred?.('success');
     } catch (error) {
       console.error('Ошибка загрузки:', error);
-      webApp?.showAlert('Ошибка загрузки фото');
-      webApp?.HapticFeedback.notificationOccurred('error');
+      webApp?.showAlert?.('Ошибка загрузки фото');
+      webApp?.HapticFeedback?.notificationOccurred?.('error');
     } finally {
       setUploading(false);
       if (fileInputRef.current) {

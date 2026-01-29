@@ -1,0 +1,59 @@
+.community {
+  padding: 1rem;
+  padding-bottom: calc(100px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.community-hero {
+  background: linear-gradient(135deg, rgba(115, 102, 255, 0.12), rgba(255, 108, 171, 0.12));
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+  color: var(--tg-theme-text-color, #0f172a);
+}
+
+.community-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.community-hero h1 {
+  margin: 0 0 0.4rem 0;
+}
+
+.community-hero p {
+  margin: 0;
+  color: var(--tg-theme-hint-color, #64748b);
+}
+
+.community-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+.community-card h3 {
+  margin: 0 0 0.75rem 0;
+}
+
+.community-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--tg-theme-text-color, #0f172a);
+}
+
+.community-card li + li {
+  margin-top: 0.35rem;
+}
+
+.community-hint {
+  margin-top: 0.75rem;
+  color: var(--tg-theme-hint-color, #94a3b8);
+  font-size: 0.9rem;
+}

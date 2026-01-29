@@ -11,23 +11,12 @@ if not exist "docker-compose.timeweb.yml" (
     exit /b 1
 )
 
-if not exist ".env.timeweb" (
-    echo ❌ Ошибка: файл .env.timeweb не найден!
-    echo 📝 Создайте файл .env.timeweb на основе env.example
-    pause
-    exit /b 1
-)
-
-echo ✅ Все необходимые файлы найдены
+echo ✅ Конфигурация найдена
 echo.
-
-REM Копируем переменные окружения
-echo 📄 Копирование переменных окружения...
-copy ".env.timeweb" ".env" >nul
 
 REM Запускаем развертывание
 echo 🚀 Запуск развертывания...
-docker-compose -f docker-compose.timeweb.yml up -d
+docker-compose -f docker-compose.timeweb.yml up -d --build
 
 echo.
 echo ✅ Развертывание запущено!

@@ -2,43 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useTelegram } from '../contexts/TelegramContext';
 import { useUser } from '../contexts/UserContext';
 import SwipeCard from '../components/SwipeCard';
-import LoadingSpinner from '../components/LoadingSpinner';
+import { getCachedCandidates, swipeCandidate, type Candidate } from '../services/mockApi';
 import './SwipeCards.css';
-
-interface Candidate {
-  _id: string;
-  firstName: string;
-  lastName?: string;
-  age: number;
-  bio?: string;
-  photos: string[];
-}
 
 const SwipeCards: React.FC = () => {
   const { webApp, user: telegramUser } = useTelegram();
   const { user } = useUser();
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [swiping, setSwiping] = useState(false);
 
-  const fetchCandidates = async () => {
-    if (!telegramUser?.id) return;
-    
-    try {
-      setLoading(true);
-      const response = await fetch(`/api/users/candidates/${telegramUser.id}?limit=10`);
-      
-      if (response.ok) {
-        const data = await response.json();
-        setCandidates(data);
-        setCurrentIndex(0);
-      }
-    } catch (error) {
-      console.error('Ошибка загрузки кандидатов:', error);
-    } finally {
-      setLoading(false);
-    }
+  const loadLocalCandidates = () => {
+    const data = getCachedCandidates(10);
+    setCandidates(data);
+    setCurrentIndex(0);
   };
 
   const handleSwipe = async (liked: boolean) => {
@@ -48,36 +25,20 @@ const SwipeCards: React.FC = () => {
     const currentCandidate = candidates[currentIndex];
     
     try {
-      const response = await fetch('/api/matches/swipe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Telegram-Init-Data': webApp?.initData || ''
-        },
-        body: JSON.stringify({
-          userTelegramId: telegramUser?.id,
-          targetUserId: currentCandidate._id,
-          liked
-        })
-      });
+      const result = await swipeCandidate(telegramUser?.id, currentCandidate._id, liked);
       
-      if (response.ok) {
-        const result = await response.json();
-        
-        if (result.matched) {
-          webApp?.HapticFeedback.notificationOccurred('success');
-          // Можно показать уведомление о матче
-          alert('🎉 Поздравляем! У вас новый матч!');
-        } else {
-          webApp?.HapticFeedback.impactOccurred('light');
-        }
-        
-        setCurrentIndex(prev => prev + 1);
-        
-        // Если осталось мало кандидатов, загружаем ещё
-        if (currentIndex >= candidates.length - 3) {
-          fetchCandidates();
-        }
+      if (result.matched) {
+        webApp?.HapticFeedback.notificationOccurred('success');
+        alert('🎉 Поздравляем! У вас новый матч!');
+      } else {
+        webApp?.HapticFeedback.impactOccurred('light');
+      }
+      
+      setCurrentIndex(prev => prev + 1);
+      
+      // Если осталось мало кандидатов, загружаем ещё
+      if (currentIndex >= candidates.length - 3) {
+        loadLocalCandidates();
       }
     } catch (error) {
       console.error('Ошибка свайпа:', error);
@@ -88,14 +49,8 @@ const SwipeCards: React.FC = () => {
   };
 
   useEffect(() => {
-    if (user && telegramUser) {
-      fetchCandidates();
-    }
+    loadLocalCandidates();
   }, [user, telegramUser]);
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
 
   if (candidates.length === 0 || currentIndex >= candidates.length) {
     return (
@@ -106,7 +61,7 @@ const SwipeCards: React.FC = () => {
           <p>Попробуйте расширить параметры поиска в настройках</p>
           <button 
             className="btn btn-primary" 
-            onClick={fetchCandidates}
+            onClick={loadLocalCandidates}
           >
             Обновить
           </button>

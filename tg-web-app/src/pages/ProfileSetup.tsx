@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 import { useTelegram } from '../contexts/TelegramContext';
 import PhotoUpload from '../components/PhotoUpload';
@@ -12,6 +13,7 @@ interface ProfileSetupProps {
 const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
   const { updateUser } = useUser();
   const { webApp } = useTelegram();
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -76,6 +78,7 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
       
       webApp?.HapticFeedback.notificationOccurred('success');
       onComplete();
+      navigate('/swipe');
     } catch (error) {
       console.error('Ошибка сохранения профиля:', error);
       webApp?.HapticFeedback.notificationOccurred('error');

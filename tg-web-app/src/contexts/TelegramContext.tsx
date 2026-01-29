@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-interface TelegramUser {
+export interface TelegramUser {
   id: number;
   first_name: string;
   last_name?: string;
@@ -73,6 +73,7 @@ interface TelegramWebApp {
   close(): void;
   ready(): void;
   sendData(data: string): void;
+  showAlert?(message: string): void;
 }
 
 declare global {
