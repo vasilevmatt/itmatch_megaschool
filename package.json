@@ -2,6 +2,7 @@
   "name": "tinder-miniapp-telegram-frontend",
   "private": true,
   "scripts": {
+    "postinstall": "cd tg-web-app && npm install",
     "dev": "cd tg-web-app && npm run dev",
     "build": "cd tg-web-app && npm run build",
     "preview": "cd tg-web-app && npm run preview"
