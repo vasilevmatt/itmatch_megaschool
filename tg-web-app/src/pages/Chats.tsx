@@ -6,29 +6,29 @@ import './Chats.css';
 const partyBanner = {
   title: 'FTMI Halloween Party 2026',
   date: '31 октября 2026, 21:00',
-  cover: 'https://images.unsplash.com/photo-1504274066651-8d31a536b11a?auto=format&fit=crop&w=1200&q=80'
+  cover: '/placeholders/party-banner.jpeg'
 };
 
 const partyCards = [
   {
     title: 'Rooftop Vinyl Night',
     date: '07 ноября 2026, 20:00',
-    cover: 'https://images.unsplash.com/photo-1478144592103-25e218a04891?auto=format&fit=crop&w=800&q=80'
+    cover: '/placeholders/party1.jpeg'
   },
   {
     title: 'Boardgames & Matcha',
     date: '10 ноября 2026, 18:30',
-    cover: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80'
+    cover: '/placeholders/party2.jpeg'
   },
   {
     title: 'Karaoke Blind Dates',
     date: '15 ноября 2026, 19:00',
-    cover: 'https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?auto=format&fit=crop&w=800&q=80'
+    cover: '/placeholders/party3.jpeg'
   },
   {
     title: 'Brunch & Art Walk',
     date: '24 ноября 2026, 12:00',
-    cover: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=800&q=80'
+    cover: '/placeholders/party4.jpeg'
   },
 ];
 
@@ -70,7 +70,8 @@ const Chats: React.FC = () => {
       </div>
 
       <div className="parties-grid">
-        <div className="party-card party-featured" data-bg={partyBanner.cover}>
+        <div className="party-card party-featured">
+          <img className="party-img" src={partyBanner.cover} alt={partyBanner.title} />
           <div className="party-overlay" />
           <div className="party-content">
             <div className="party-date">{partyBanner.date}</div>
@@ -79,7 +80,8 @@ const Chats: React.FC = () => {
         </div>
 
         {partyCards.map((party) => (
-          <div key={party.title} className="party-card" data-bg={party.cover}>
+          <div key={party.title} className="party-card">
+            <img className="party-img" src={party.cover} alt={party.title} />
             <div className="party-overlay" />
             <div className="party-content">
               <div className="party-date">{party.date}</div>

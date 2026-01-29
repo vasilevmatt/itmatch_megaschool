@@ -1,5 +1,4 @@
 import React from 'react';
-import placeholderAvatar from '../assets/placeholder-avatar.svg';
 import './MessageBubble.css';
 
 interface Message {
@@ -35,7 +34,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwn }) => {
       {!isOwn && (
         <div className="sender-avatar">
           <img 
-            src={message.sender.photos[0] || placeholderAvatar} 
+            src={message.sender.photos[0] || '/placeholders/avatar.jpg'} 
             alt={message.sender.firstName}
           />
         </div>

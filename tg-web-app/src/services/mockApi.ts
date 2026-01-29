@@ -58,8 +58,7 @@ const STORAGE_KEYS = {
   messages: 'demo_messages',
 } as const;
 
-const DEFAULT_AVATAR =
-  'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=500&q=80';
+const DEFAULT_AVATAR = '/placeholders/avatar.jpg';
 
 const BASE_CANDIDATES: Candidate[] = [
   {
@@ -68,8 +67,8 @@ const BASE_CANDIDATES: Candidate[] = [
     age: 25,
     bio: 'Бегаю марафоны, варю лучший раф и ищу спутника для путешествий.',
     photos: [
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+      '/placeholders/photo1.jpeg',
+      '/placeholders/photo2.jpeg',
     ],
   },
   {
@@ -78,8 +77,8 @@ const BASE_CANDIDATES: Candidate[] = [
     age: 29,
     bio: 'Продакт, обожаю артхаус, крафтовое пиво и котов.',
     photos: [
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80',
+      '/placeholders/photo3.jpeg',
+      '/placeholders/photo4.jpeg',
     ],
   },
   {
@@ -88,7 +87,7 @@ const BASE_CANDIDATES: Candidate[] = [
     age: 22,
     bio: 'Дизайнер UX/UI, люблю выставки, плёночную фотографию и утренние пробежки.',
     photos: [
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80',
+      '/placeholders/photo5.jpeg',
     ],
   },
   {
@@ -97,8 +96,8 @@ const BASE_CANDIDATES: Candidate[] = [
     age: 27,
     bio: 'Йога, книги и походы в горы. Ищу партнёра в crime & coffee.',
     photos: [
-      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+      '/placeholders/photo6.jpeg',
+      '/placeholders/photo7.jpeg',
     ],
   },
   {
@@ -107,8 +106,8 @@ const BASE_CANDIDATES: Candidate[] = [
     age: 24,
     bio: 'Фронтендер, катаюсь на борде, обожаю инди-музыку и тёплый ламповый свет.',
     photos: [
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80',
+      '/placeholders/photo8.jpeg',
+      '/placeholders/photo9.jpeg',
     ],
   },
 ];

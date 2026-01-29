@@ -14,10 +14,10 @@ const SwipeCard: React.FC<SwipeCardProps> = ({ candidate, onSwipe, disabled }) =
   return (
     <div
       className={`swipe-card ${disabled ? 'swipe-card--disabled' : ''}`}
-      data-bg={photo}
       onDoubleClick={() => !disabled && onSwipe(true)}
       role="presentation"
     >
+      <img className="swipe-card__img" src={photo} alt={candidate.firstName} />
       <div className="swipe-card__overlay" />
       <div className="swipe-card__info">
         <div className="swipe-card__title">
