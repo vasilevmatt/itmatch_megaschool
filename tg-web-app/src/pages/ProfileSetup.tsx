@@ -23,7 +23,7 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
     preferences: {
       minAge: 18,
       maxAge: 50,
-      maxDistance: 50
+      university: 'ИТМО'
     }
   });
 
@@ -34,7 +34,7 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
     }));
   };
 
-  const handlePreferenceChange = (field: string, value: number) => {
+  const handlePreferenceChange = (field: string, value: any) => {
     setFormData(prev => ({
       ...prev,
       preferences: {
@@ -193,14 +193,16 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
             </div>
 
             <div className="form-group">
-              <label>Максимальное расстояние (км)</label>
-              <input
-                type="number"
-                min="1"
-                max="50"
-                value={formData.preferences.maxDistance}
-                onChange={(e) => handlePreferenceChange('maxDistance', parseInt(e.target.value))}
-              />
+              <label>Университет</label>
+              <select
+                value={formData.preferences.university}
+                onChange={(e) => handlePreferenceChange('university', e.target.value)}
+              >
+                <option value="ИТМО">ИТМО</option>
+                <option value="ВШЭ">ВШЭ</option>
+                <option value="СПбГУ">СПбГУ</option>
+                <option value="Любой">Любой</option>
+              </select>
             </div>
           </div>
         )}

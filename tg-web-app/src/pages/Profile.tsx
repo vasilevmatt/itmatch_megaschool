@@ -22,7 +22,7 @@ const Profile: React.FC = () => {
     preferences: user?.preferences || {
       minAge: 18,
       maxAge: 50,
-      maxDistance: 50
+      university: 'ИТМО'
     }
   });
 
@@ -33,7 +33,7 @@ const Profile: React.FC = () => {
     }));
   };
 
-  const handlePreferenceChange = (field: string, value: number) => {
+  const handlePreferenceChange = (field: string, value: any) => {
     setFormData(prev => ({
       ...prev,
       preferences: {
@@ -72,7 +72,7 @@ const Profile: React.FC = () => {
       preferences: user?.preferences || {
         minAge: 18,
         maxAge: 50,
-        maxDistance: 50
+        university: 'ИТМО'
       }
     });
     setEditing(false);
@@ -218,18 +218,17 @@ const Profile: React.FC = () => {
             </div>
 
             <div className="form-group">
-              <label>Максимальное расстояние (км)</label>
-              {editing ? (
-                <input
-                  type="number"
-                  min="1"
-                  max="50"
-                  value={formData.preferences.maxDistance}
-                  onChange={(e) => handlePreferenceChange('maxDistance', parseInt(e.target.value))}
-                />
-              ) : (
-                <input type="text" value={`${formData.preferences.maxDistance} км`} disabled />
-              )}
+              <label>Университет</label>
+              <select
+                value={formData.preferences.university}
+                onChange={(e) => handlePreferenceChange('university', e.target.value)}
+                disabled={!editing}
+              >
+                <option value="ИТМО">ИТМО</option>
+                <option value="ВШЭ">ВШЭ</option>
+                <option value="СПбГУ">СПбГУ</option>
+                <option value="Любой">Любой</option>
+              </select>
             </div>
           </div>
 

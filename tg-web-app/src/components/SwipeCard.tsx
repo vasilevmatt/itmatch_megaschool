@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './SwipeCard.css';
 import { type Candidate, getPlaceholderAvatar } from '../services/mockApi';
 
@@ -11,6 +11,7 @@ interface SwipeCardProps {
 
 const SwipeCard: React.FC<SwipeCardProps> = ({ candidate, onSwipe, disabled, swipeDirection }) => {
   const photo = candidate.photos?.[0] || getPlaceholderAvatar();
+  const cardRef = useRef<HTMLDivElement>(null);
   let touchStartX = 0;
   let touchStartY = 0;
 
@@ -28,12 +29,27 @@ const SwipeCard: React.FC<SwipeCardProps> = ({ candidate, onSwipe, disabled, swi
     }
   };
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (disabled) return;
+    const rect = cardRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const clickX = e.clientX - rect.left;
+    const edge = rect.width * 0.35;
+    if (clickX < edge) {
+      onSwipe(false);
+    } else if (clickX > rect.width * 0.65) {
+      onSwipe(true);
+    }
+  };
+
   return (
     <div
       className={`swipe-card ${disabled ? 'swipe-card--disabled' : ''} ${swipeDirection ? `swipe-card--${swipeDirection}` : ''}`}
+      ref={cardRef}
       onDoubleClick={() => !disabled && onSwipe(true)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      onClick={handleClick}
       role="presentation"
     >
       <img className="swipe-card__img" src={photo} alt={candidate.firstName} />

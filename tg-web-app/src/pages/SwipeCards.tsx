@@ -18,7 +18,10 @@ const SwipeCards: React.FC = () => {
   const loadLocalCandidates = () => {
     const data = getCachedCandidates(10).filter((c) => {
       if (!user?.preferences) return true;
-      return c.age >= user.preferences.minAge && c.age <= user.preferences.maxAge;
+      const ageOk = c.age >= user.preferences.minAge && c.age <= user.preferences.maxAge;
+      const uniPref = user.preferences.university;
+      const uniOk = uniPref === 'Любой' || !c.university || c.university === uniPref;
+      return ageOk && uniOk;
     });
     setCandidates(data);
     setCurrentIndex(0);
@@ -138,9 +141,21 @@ const SwipeCards: React.FC = () => {
 
       {filtersOpen && (
         <div className="filters-panel">
+          <div className="filters-panel__header">
+            <span>Фильтры</span>
+            <button
+              type="button"
+              className="filters-close"
+              onClick={() => setFiltersOpen(false)}
+              aria-label="Закрыть фильтры"
+            >
+              ✕
+            </button>
+          </div>
           <label>
             Мин. возраст
             <input
+              className="filter-input"
               type="number"
               min="16"
               max={user?.preferences.maxAge || 35}
@@ -148,7 +163,7 @@ const SwipeCards: React.FC = () => {
               onChange={(e) =>
                 updateUser({
                   preferences: {
-                    ...(user?.preferences ?? { maxAge: 30, maxDistance: 10, minAge: 16 }),
+                    ...(user?.preferences ?? { maxAge: 30, university: 'ИТМО', minAge: 16 }),
                     minAge: parseInt(e.target.value)
                   }
                 }).then(loadLocalCandidates)
@@ -158,6 +173,7 @@ const SwipeCards: React.FC = () => {
           <label>
             Макс. возраст
             <input
+              className="filter-input"
               type="number"
               min={user?.preferences.minAge || 16}
               max="35"
@@ -165,7 +181,7 @@ const SwipeCards: React.FC = () => {
               onChange={(e) =>
                 updateUser({
                   preferences: {
-                    ...(user?.preferences ?? { minAge: 16, maxDistance: 10, maxAge: 30 }),
+                    ...(user?.preferences ?? { minAge: 16, university: 'ИТМО', maxAge: 30 }),
                     maxAge: parseInt(e.target.value)
                   }
                 }).then(loadLocalCandidates)
@@ -173,21 +189,24 @@ const SwipeCards: React.FC = () => {
             />
           </label>
           <label>
-            Дистанция (км)
-            <input
-              type="number"
-              min="1"
-              max="50"
-              value={user?.preferences.maxDistance ?? 10}
+            Университет
+            <select
+              className="filter-input"
+              value={user?.preferences.university ?? 'ИТМО'}
               onChange={(e) =>
                 updateUser({
                   preferences: {
-                    ...(user?.preferences ?? { minAge: 16, maxAge: 30, maxDistance: 10 }),
-                    maxDistance: parseInt(e.target.value)
+                    ...(user?.preferences ?? { minAge: 16, maxAge: 30, university: 'ИТМО' }),
+                    university: e.target.value
                   }
-                })
+                }).then(loadLocalCandidates)
               }
-            />
+            >
+              <option value="ИТМО">ИТМО</option>
+              <option value="ВШЭ">ВШЭ</option>
+              <option value="СПбГУ">СПбГУ</option>
+              <option value="Любой">Любой</option>
+            </select>
           </label>
         </div>
       )}

@@ -8,6 +8,7 @@ export interface Candidate {
   age: number;
   bio?: string;
   photos: string[];
+  university?: string;
 }
 
 export interface UserProfile extends Candidate {
@@ -15,7 +16,7 @@ export interface UserProfile extends Candidate {
   preferences: {
     minAge: number;
     maxAge: number;
-    maxDistance: number;
+    university: string;
   };
   isActive: boolean;
   lastSeen: string;
@@ -66,6 +67,7 @@ const BASE_CANDIDATES: Candidate[] = [
     firstName: 'Аня',
     age: 21,
     bio: 'Ищу единомышленников для участия в бизнес-тезисе ВКР 💋',
+    university: 'ИТМО',
     photos: [
       '/placeholders/photo1.jpeg',
       '/placeholders/photo2.jpeg',
@@ -76,6 +78,7 @@ const BASE_CANDIDATES: Candidate[] = [
     firstName: 'Мария',
     age: 22,
     bio: 'Продакт, обожаю артхаус, матанализ и котов',
+    university: 'СПбГУ',
     photos: [
       '/placeholders/photo3.jpeg',
       '/placeholders/photo4.jpeg',
@@ -86,6 +89,7 @@ const BASE_CANDIDATES: Candidate[] = [
     firstName: 'Катя',
     age: 21,
     bio: 'Дизайнер UX/UI, люблю выставки, плёночную фотографию и утренние пробежки.',
+    university: 'ВШЭ',
     photos: [
       '/placeholders/photo5.jpeg',
     ],
@@ -95,6 +99,7 @@ const BASE_CANDIDATES: Candidate[] = [
     firstName: 'Вика',
     age: 24,
     bio: 'Йога, книги и походы в горы. Ищу партнёра в crime & coffee.',
+    university: 'Любой',
     photos: [
       '/placeholders/photo6.jpeg',
       '/placeholders/photo7.jpeg',
@@ -105,6 +110,7 @@ const BASE_CANDIDATES: Candidate[] = [
     firstName: 'Саша',
     age: 23,
     bio: 'Фронтендер, катаюсь на борде, обожаю инди-музыку и тёплый ламповый свет.',
+    university: 'ИТМО',
     photos: [
       '/placeholders/photo8.jpeg',
       '/placeholders/photo9.jpeg',
@@ -261,7 +267,7 @@ export const saveProfile = async (
     preferences: {
       minAge: 18,
       maxAge: 50,
-      maxDistance: 50,
+      university: 'ИТМО',
     },
     isActive: true,
     lastSeen: now,
