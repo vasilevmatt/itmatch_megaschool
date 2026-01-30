@@ -39,7 +39,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwn, showAvata
         showAvatar ? (
           <div className="sender-avatar">
             <img 
-              src={message.sender.photos[0] || '/placeholders/avatar.jpg'} 
+              src={message.sender.photos[0] || '/placeholders/avatar.txt'} 
               alt={message.sender.firstName}
             />
           </div>
