@@ -1,6 +1,6 @@
 .swipe-cards {
   padding: 1rem;
-  padding-bottom: calc(90px + env(safe-area-inset-bottom));
+  padding-bottom: calc(100px + env(safe-area-inset-bottom));
   height: calc(100vh - var(--bottom-nav-height, 90px));
   min-height: 100vh;
   display: flex;
@@ -31,7 +31,6 @@
   border-radius: 20px;
   padding: 2rem;
   text-align: center;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
 }
 
 .no-candidates-icon {
@@ -69,4 +68,90 @@
 .swipe-hint-arrows {
   font-weight: 700;
   letter-spacing: 4px;
+}
+
+.swipe-actions {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.action-btn {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.8rem;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.action-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.action-btn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.24);
+}
+
+.dislike-btn {
+  background: linear-gradient(145deg, #ff6b6b, #ff8e8e);
+  color: #ffffff;
+}
+
+.like-btn {
+  background: linear-gradient(145deg, #36d1dc, #5b86e5);
+  color: #ffffff;
+}
+
+.filter-btn {
+  border: none;
+  padding: 0.85rem 1.2rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #2aabee, #1c93d1);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 12px 30px rgba(28, 147, 209, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 36px rgba(28, 147, 209, 0.35);
+}
+
+.filters-panel {
+  position: absolute;
+  left: 50%;
+  bottom: 130px;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.6rem;
+  min-width: 220px;
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.15);
+  z-index: 8;
+}
+
+.filters-panel label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+
+.filters-panel input {
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 6px 8px;
 }

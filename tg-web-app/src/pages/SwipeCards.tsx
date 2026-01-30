@@ -7,15 +7,19 @@ import './SwipeCards.css';
 
 const SwipeCards: React.FC = () => {
   const { webApp, user: telegramUser } = useTelegram();
-  const { user } = useUser();
+  const { user, updateUser } = useUser();
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [swiping, setSwiping] = useState(false);
   const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null);
   const [showHint, setShowHint] = useState(true);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const loadLocalCandidates = () => {
-    const data = getCachedCandidates(10);
+    const data = getCachedCandidates(10).filter((c) => {
+      if (!user?.preferences) return true;
+      return c.age >= user.preferences.minAge && c.age <= user.preferences.maxAge;
+    });
     setCandidates(data);
     setCurrentIndex(0);
   };
@@ -106,6 +110,87 @@ const SwipeCards: React.FC = () => {
           </div>
         )}
       </div>
+
+      <div className="swipe-actions">
+        <button 
+          className="action-btn dislike-btn"
+          onClick={() => handleSwipe(false)}
+          disabled={swiping}
+        >
+          ✖
+        </button>
+
+        <button 
+          className="filter-btn"
+          onClick={() => setFiltersOpen((v) => !v)}
+        >
+          Фильтры
+        </button>
+
+        <button 
+          className="action-btn like-btn"
+          onClick={() => handleSwipe(true)}
+          disabled={swiping}
+        >
+          ❤️
+        </button>
+      </div>
+
+      {filtersOpen && (
+        <div className="filters-panel">
+          <label>
+            Мин. возраст
+            <input
+              type="number"
+              min="16"
+              max={user?.preferences.maxAge || 35}
+              value={user?.preferences.minAge ?? 16}
+              onChange={(e) =>
+                updateUser({
+                  preferences: {
+                    ...(user?.preferences ?? { maxAge: 30, maxDistance: 10, minAge: 16 }),
+                    minAge: parseInt(e.target.value)
+                  }
+                }).then(loadLocalCandidates)
+              }
+            />
+          </label>
+          <label>
+            Макс. возраст
+            <input
+              type="number"
+              min={user?.preferences.minAge || 16}
+              max="35"
+              value={user?.preferences.maxAge ?? 30}
+              onChange={(e) =>
+                updateUser({
+                  preferences: {
+                    ...(user?.preferences ?? { minAge: 16, maxDistance: 10, maxAge: 30 }),
+                    maxAge: parseInt(e.target.value)
+                  }
+                }).then(loadLocalCandidates)
+              }
+            />
+          </label>
+          <label>
+            Дистанция (км)
+            <input
+              type="number"
+              min="1"
+              max="50"
+              value={user?.preferences.maxDistance ?? 10}
+              onChange={(e) =>
+                updateUser({
+                  preferences: {
+                    ...(user?.preferences ?? { minAge: 16, maxAge: 30, maxDistance: 10 }),
+                    maxDistance: parseInt(e.target.value)
+                  }
+                })
+              }
+            />
+          </label>
+        </div>
+      )}
     </div>
   );
 };

@@ -188,37 +188,47 @@ const Profile: React.FC = () => {
             <h3>Предпочтения</h3>
             
             <div className="form-group">
-              <label>Возраст: {formData.preferences.minAge} - {formData.preferences.maxAge}</label>
-              {editing && (
-                <div className="range-inputs">
-                  <input
-                    type="range"
-                    min="18"
-                    max="100"
-                    value={formData.preferences.minAge}
-                    onChange={(e) => handlePreferenceChange('minAge', parseInt(e.target.value))}
-                  />
-                  <input
-                    type="range"
-                    min="18"
-                    max="100"
-                    value={formData.preferences.maxAge}
-                    onChange={(e) => handlePreferenceChange('maxAge', parseInt(e.target.value))}
-                  />
-                </div>
+              <label>Минимальный возраст</label>
+              {editing ? (
+                <input
+                  type="number"
+                  min="16"
+                  max={formData.preferences.maxAge}
+                  value={formData.preferences.minAge}
+                  onChange={(e) => handlePreferenceChange('minAge', parseInt(e.target.value))}
+                />
+              ) : (
+                <input type="text" value={formData.preferences.minAge} disabled />
               )}
             </div>
 
             <div className="form-group">
-              <label>Максимальное расстояние: {formData.preferences.maxDistance} км</label>
-              {editing && (
+              <label>Максимальный возраст</label>
+              {editing ? (
                 <input
-                  type="range"
+                  type="number"
+                  min={formData.preferences.minAge}
+                  max="35"
+                  value={formData.preferences.maxAge}
+                  onChange={(e) => handlePreferenceChange('maxAge', parseInt(e.target.value))}
+                />
+              ) : (
+                <input type="text" value={formData.preferences.maxAge} disabled />
+              )}
+            </div>
+
+            <div className="form-group">
+              <label>Максимальное расстояние (км)</label>
+              {editing ? (
+                <input
+                  type="number"
                   min="1"
-                  max="100"
+                  max="50"
                   value={formData.preferences.maxDistance}
                   onChange={(e) => handlePreferenceChange('maxDistance', parseInt(e.target.value))}
                 />
+              ) : (
+                <input type="text" value={`${formData.preferences.maxDistance} км`} disabled />
               )}
             </div>
           </div>
