@@ -8,6 +8,7 @@ import Chat from './pages/Chat';
 import Profile from './pages/Profile';
 import Community from './pages/Community';
 import Chats from './pages/Chats';
+import EventDetail from './pages/EventDetail';
 import BottomNavigation from './components/BottomNavigation';
 import LoadingSpinner from './components/LoadingSpinner';
 import './App.css';
@@ -37,6 +38,7 @@ const AppContent: React.FC = () => {
           <Route path="/swipe" element={<SwipeCards />} />
           <Route path="/chat/:matchId" element={<Chat />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/events/:slug" element={<EventDetail />} />
         </Routes>
         
         <BottomNavigation />

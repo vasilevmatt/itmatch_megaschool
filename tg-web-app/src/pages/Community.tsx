@@ -1,37 +1,15 @@
 import React from 'react';
 import { Banner, Button, Image } from '@telegram-apps/telegram-ui';
+import { useNavigate } from 'react-router-dom';
+import { communityEvents } from '../data/events';
 import './Community.css';
 
-const partyBanner = {
-  title: 'FTMI Halloween Party 2026',
-  date: '31 октября 2026, 21:00',
-  cover: '/placeholders/party-banner.jpeg'
-};
-
-const partyCards = [
-  {
-    title: 'Rooftop Vinyl Night',
-    date: '07 ноября 2026, 20:00',
-    cover: '/placeholders/party1.jpeg'
-  },
-  {
-    title: 'Boardgames & Matcha',
-    date: '10 ноября 2026, 18:30',
-    cover: '/placeholders/party2.jpeg'
-  },
-  {
-    title: 'Karaoke Blind Dates',
-    date: '15 ноября 2026, 19:00',
-    cover: '/placeholders/party3.jpeg'
-  },
-  {
-    title: 'Brunch & Art Walk',
-    date: '24 ноября 2026, 12:00',
-    cover: '/placeholders/party4.jpeg'
-  },
-];
-
 const Community: React.FC = () => {
+  const navigate = useNavigate();
+
+  const featured = communityEvents[0];
+  const rest = communityEvents.slice(1);
+
   return (
     <>
       <Banner
@@ -43,7 +21,7 @@ const Community: React.FC = () => {
         type="inline"
       >
         <>
-          <Button size="s">Участвовать</Button>
+          <Button size="s" onClick={() => navigate(`/events/${featured.slug}`)}>Участвовать</Button>
           <Button mode="plain" size="s">Позже</Button>
         </>
       </Banner>
@@ -53,17 +31,17 @@ const Community: React.FC = () => {
       </div>
 
       <div className="parties-grid">
-        <div className="party-card party-featured">
-          <img className="party-img" src={partyBanner.cover} alt={partyBanner.title} />
+        <div className="party-card party-featured" onClick={() => navigate(`/events/${featured.slug}`)}>
+          <img className="party-img" src={featured.cover} alt={featured.title} />
           <div className="party-overlay" />
           <div className="party-content">
-            <div className="party-date">{partyBanner.date}</div>
-            <div className="party-title">{partyBanner.title}</div>
+            <div className="party-date">{featured.date}</div>
+            <div className="party-title">{featured.title}</div>
           </div>
         </div>
 
-        {partyCards.map((party) => (
-          <div key={party.title} className="party-card">
+        {rest.map((party) => (
+          <div key={party.title} className="party-card" onClick={() => navigate(`/events/${party.slug}`)}>
             <img className="party-img" src={party.cover} alt={party.title} />
             <div className="party-overlay" />
             <div className="party-content">

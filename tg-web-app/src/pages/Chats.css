@@ -142,6 +142,13 @@
   overflow: hidden;
   min-height: 140px;
   box-shadow: 0 12px 26px rgba(15, 23, 42, 0.18);
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.party-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.22);
 }
 
 .party-img {
@@ -199,4 +206,91 @@
   .chat-arrow {
     display: none;
   }
+}
+
+/* Event detail (shared with Community) */
+.event-detail {
+  margin-top: 1rem;
+}
+
+.event-card {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 52px rgba(15, 23, 42, 0.18);
+  z-index: 1;
+}
+
+.event-card__cover {
+  position: relative;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  color: #fff;
+}
+
+.event-card__tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.event-card__title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.event-card__body {
+  padding: 1.15rem 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.event-meta {
+  display: grid;
+  gap: 0.35rem;
+  background: rgba(42, 171, 238, 0.07);
+  border: 1px solid rgba(42, 171, 238, 0.15);
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
+  color: #0f172a;
+}
+
+.event-desc {
+  margin: 0;
+  color: #0f172a;
+  line-height: 1.5;
+}
+
+.event-agenda__title {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.event-agenda ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #0f172a;
+}
+
+.event-agenda li + li {
+  margin-top: 0.25rem;
+}
+
+.event-cta {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }

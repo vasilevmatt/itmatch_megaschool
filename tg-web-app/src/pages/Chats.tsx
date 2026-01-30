@@ -1,29 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getPresetChats } from '../services/mockApi';
+import { useNavigate } from 'react-router-dom';
+import { gameEvents } from '../data/events';
 import './Chats.css';
-
-const partyBanner = {
-  title: 'Speed Meeting Quest',
-  date: 'Каждый четверг, 19:00',
-  cover: '/placeholders/game-banner.jpg'
-};
-
-const partyCards = [
-  {
-    title: 'Icebreaker Bingo',
-    date: 'Пятница, 18:00',
-    cover: '/placeholders/game1.jpg'
-  },
-  {
-    title: 'Spyfall Night',
-    date: 'Среда, 19:30',
-    cover: '/placeholders/game2.jpg'
-  },
-];
 
 const Chats: React.FC = () => {
   const chats = getPresetChats();
+  const navigate = useNavigate();
+  const featured = gameEvents[0];
+  const rest = gameEvents.slice(1);
+
 
   return (
     <div className="chats">
@@ -60,17 +47,17 @@ const Chats: React.FC = () => {
       </div>
 
       <div className="parties-grid">
-        <div className="party-card party-featured">
-          <img className="party-img" src={partyBanner.cover} alt={partyBanner.title} />
+        <div className="party-card party-featured" onClick={() => navigate(`/events/${featured.slug}`)}>
+          <img className="party-img" src={featured.cover} alt={featured.title} />
           <div className="party-overlay" />
           <div className="party-content">
-            <div className="party-date">{partyBanner.date}</div>
-            <div className="party-title">{partyBanner.title}</div>
+            <div className="party-date">{featured.date}</div>
+            <div className="party-title">{featured.title}</div>
           </div>
         </div>
 
-        {partyCards.map((party) => (
-          <div key={party.title} className="party-card">
+        {rest.map((party) => (
+          <div key={party.title} className="party-card" onClick={() => navigate(`/events/${party.slug}`)}>
             <img className="party-img" src={party.cover} alt={party.title} />
             <div className="party-overlay" />
             <div className="party-content">
