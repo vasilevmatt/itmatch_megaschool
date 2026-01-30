@@ -50,7 +50,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwn, showAvata
       
       <div className="message-content">
         {message.type === 'text' && (
-          <div className="message-text">
+          <div className={`message-text ${isOwn ? 'own' : ''}`}>
             {message.content}
           </div>
         )}

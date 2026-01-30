@@ -65,6 +65,11 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
     }
   };
 
+  const handleSkipPhotos = () => {
+    setStep(3);
+    webApp?.HapticFeedback.selectionChanged();
+  };
+
   const handleSubmit = async () => {
     try {
       setLoading(true);
@@ -90,7 +95,7 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
   const isStepValid = () => {
     switch (step) {
       case 1:
-        return formData.age && parseInt(formData.age) >= 18 && parseInt(formData.age) <= 100;
+        return formData.age && parseInt(formData.age) >= 16 && parseInt(formData.age) <= 100;
       case 2:
         return formData.photos.length > 0;
       case 3:
@@ -229,6 +234,17 @@ const ProfileSetup: React.FC<ProfileSetupProps> = ({ onComplete }) => {
           </button>
         )}
       </div>
+
+      {step === 2 && (
+        <div className="setup-actions setup-actions--single">
+          <button 
+            className="btn btn-secondary btn-wide" 
+            onClick={handleSkipPhotos}
+          >
+            Пропустить
+          </button>
+        </div>
+      )}
     </div>
   );
 };

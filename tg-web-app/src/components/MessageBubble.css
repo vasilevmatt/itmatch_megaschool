@@ -52,6 +52,11 @@
   word-wrap: break-word;
   white-space: pre-wrap;
   line-height: 1.4;
+  color: black;
+}
+
+.message-text.own {
+  color: white;
 }
 
 .message-image {

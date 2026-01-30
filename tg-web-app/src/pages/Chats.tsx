@@ -4,31 +4,21 @@ import { getPresetChats } from '../services/mockApi';
 import './Chats.css';
 
 const partyBanner = {
-  title: 'FTMI Halloween Party 2026',
-  date: '31 октября 2026, 21:00',
-  cover: '/placeholders/party-banner.jpeg'
+  title: 'Speed Meeting Quest',
+  date: 'Каждый четверг, 19:00',
+  cover: '/placeholders/game-banner.jpg'
 };
 
 const partyCards = [
   {
-    title: 'Rooftop Vinyl Night',
-    date: '07 ноября 2026, 20:00',
-    cover: '/placeholders/party1.jpeg'
+    title: 'Icebreaker Bingo',
+    date: 'Пятница, 18:00',
+    cover: '/placeholders/game1.jpg'
   },
   {
-    title: 'Boardgames & Matcha',
-    date: '10 ноября 2026, 18:30',
-    cover: '/placeholders/party2.jpeg'
-  },
-  {
-    title: 'Karaoke Blind Dates',
-    date: '15 ноября 2026, 19:00',
-    cover: '/placeholders/party3.jpeg'
-  },
-  {
-    title: 'Brunch & Art Walk',
-    date: '24 ноября 2026, 12:00',
-    cover: '/placeholders/party4.jpeg'
+    title: 'Spyfall Night',
+    date: 'Среда, 19:30',
+    cover: '/placeholders/game2.jpg'
   },
 ];
 
@@ -66,7 +56,7 @@ const Chats: React.FC = () => {
       </div>
 
       <div className="parties-header">
-        <h2>Мои вечеринки</h2>
+        <h2>Мои игры</h2>
       </div>
 
       <div className="parties-grid">
