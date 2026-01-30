@@ -4,6 +4,7 @@ import { useUser } from '../contexts/UserContext';
 import SwipeCard from '../components/SwipeCard';
 import { getCachedCandidates, swipeCandidate, type Candidate } from '../services/mockApi';
 import './SwipeCards.css';
+import { Button, Input } from '@telegram-apps/telegram-ui';
 
 const SwipeCards: React.FC = () => {
   const { webApp, user: telegramUser } = useTelegram();
@@ -112,37 +113,28 @@ const SwipeCards: React.FC = () => {
       </div>
 
       <div className="swipe-actions">
-        <button 
-          className="action-btn dislike-btn"
-          onClick={() => handleSwipe(false)}
-          disabled={swiping}
-        >
-          ✖
-        </button>
-
-        <button 
-          className="filter-btn"
-          onClick={() => setFiltersOpen((v) => !v)}
-        >
+        <Button size="l" mode="filled" onClick={() => handleSwipe(false)} disabled={swiping}>
+          Нет
+        </Button>
+        <Button size="m" mode="bezeled" onClick={() => setFiltersOpen((v) => !v)}>
           Фильтры
-        </button>
-
-        <button 
-          className="action-btn like-btn"
-          onClick={() => handleSwipe(true)}
-          disabled={swiping}
-        >
-          ❤️
-        </button>
+        </Button>
+        <Button size="l" mode="filled" onClick={() => handleSwipe(true)} disabled={swiping}>
+          Лайк
+        </Button>
       </div>
 
       {filtersOpen && (
         <div className="filters-panel">
+          <div className="filters-header">
+            <strong>Фильтры</strong>
+            <Button size="s" mode="plain" onClick={() => setFiltersOpen(false)}>Закрыть</Button>
+          </div>
           <label>
-            Мин. возраст
-            <input
+            <Input
               type="number"
               min="16"
+              header='Мин. возраст'
               max={user?.preferences.maxAge || 35}
               value={user?.preferences.minAge ?? 16}
               onChange={(e) =>
@@ -156,9 +148,9 @@ const SwipeCards: React.FC = () => {
             />
           </label>
           <label>
-            Макс. возраст
-            <input
+            <Input
               type="number"
+              header='Макс. возраст'
               min={user?.preferences.minAge || 16}
               max="35"
               value={user?.preferences.maxAge ?? 30}
@@ -169,23 +161,6 @@ const SwipeCards: React.FC = () => {
                     maxAge: parseInt(e.target.value)
                   }
                 }).then(loadLocalCandidates)
-              }
-            />
-          </label>
-          <label>
-            Дистанция (км)
-            <input
-              type="number"
-              min="1"
-              max="50"
-              value={user?.preferences.maxDistance ?? 10}
-              onChange={(e) =>
-                updateUser({
-                  preferences: {
-                    ...(user?.preferences ?? { minAge: 16, maxAge: 30, maxDistance: 10 }),
-                    maxDistance: parseInt(e.target.value)
-                  }
-                })
               }
             />
           </label>
