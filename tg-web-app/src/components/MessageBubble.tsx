@@ -18,9 +18,10 @@ interface Message {
 interface MessageBubbleProps {
   message: Message;
   isOwn: boolean;
+  showAvatar?: boolean;
 }
 
-const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwn }) => {
+const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwn, showAvatar = true }) => {
   const formatTime = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleTimeString('ru-RU', { 
@@ -31,13 +32,20 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isOwn }) => {
 
   return (
     <div className={`message-bubble ${isOwn ? 'own' : 'other'}`}>
+      {isOwn && (
+        <div className="sender-avatar sender-avatar--spacer" />
+      )}
       {!isOwn && (
-        <div className="sender-avatar">
-          <img 
-            src={message.sender.photos[0] || '/placeholders/avatar.jpg'} 
-            alt={message.sender.firstName}
-          />
-        </div>
+        showAvatar ? (
+          <div className="sender-avatar">
+            <img 
+              src={message.sender.photos[0] || '/placeholders/avatar.txt'} 
+              alt={message.sender.firstName}
+            />
+          </div>
+        ) : (
+          <div className="sender-avatar sender-avatar--spacer" />
+        )
       )}
       
       <div className="message-content">

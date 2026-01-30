@@ -64,8 +64,8 @@ const BASE_CANDIDATES: Candidate[] = [
   {
     _id: 'cand_1',
     firstName: 'Аня',
-    age: 25,
-    bio: 'Бегаю марафоны, варю лучший раф и ищу спутника для путешествий.',
+    age: 21,
+    bio: 'Ищу единомышленников для участия в бизнес-тезисе ВКР 💋',
     photos: [
       '/placeholders/photo1.jpeg',
       '/placeholders/photo2.jpeg',
@@ -74,8 +74,8 @@ const BASE_CANDIDATES: Candidate[] = [
   {
     _id: 'cand_2',
     firstName: 'Мария',
-    age: 29,
-    bio: 'Продакт, обожаю артхаус, крафтовое пиво и котов.',
+    age: 22,
+    bio: 'Продакт, обожаю артхаус, матанализ и котов',
     photos: [
       '/placeholders/photo3.jpeg',
       '/placeholders/photo4.jpeg',
@@ -84,7 +84,7 @@ const BASE_CANDIDATES: Candidate[] = [
   {
     _id: 'cand_3',
     firstName: 'Катя',
-    age: 22,
+    age: 21,
     bio: 'Дизайнер UX/UI, люблю выставки, плёночную фотографию и утренние пробежки.',
     photos: [
       '/placeholders/photo5.jpeg',
@@ -93,7 +93,7 @@ const BASE_CANDIDATES: Candidate[] = [
   {
     _id: 'cand_4',
     firstName: 'Вика',
-    age: 27,
+    age: 24,
     bio: 'Йога, книги и походы в горы. Ищу партнёра в crime & coffee.',
     photos: [
       '/placeholders/photo6.jpeg',
@@ -103,7 +103,7 @@ const BASE_CANDIDATES: Candidate[] = [
   {
     _id: 'cand_5',
     firstName: 'Саша',
-    age: 24,
+    age: 23,
     bio: 'Фронтендер, катаюсь на борде, обожаю инди-музыку и тёплый ламповый свет.',
     photos: [
       '/placeholders/photo8.jpeg',
@@ -197,7 +197,7 @@ const ensurePresetMessages = () => {
         {
           _id: `${chat.id}_m0`,
           sender: chat.user,
-          content: 'Привет! Нашла твоё письмо, оно было милым 😊',
+          content: 'Привет! Мы уже виделись в клубе поклонников Тейлор Свифт 😊',
           type: 'text',
           isRead: true,
           createdAt: new Date(Date.now() - 1000 * 60 * 180).toISOString(),
@@ -205,10 +205,10 @@ const ensurePresetMessages = () => {
         {
           _id: `${chat.id}_me1`,
           sender: selfSender,
-          content: 'Привет! Давай пересечёмся в субботу, я свободен после 15:00.',
+          content: 'Привет! Давай пересечёмся в субботу, например в aster :)',
           type: 'text',
           isRead: true,
-          createdAt: new Date(Date.now() - 1000 * 60 * 120).toISOString(),
+          createdAt: new Date(Date.now() - 1000 * 6 * 120).toISOString(),
         },
       ];
       store[chat.id] = baseMessages;
@@ -399,7 +399,7 @@ export const sendChatMessage = async (
   await delay();
   const profile = getStorage<UserProfile | null>(STORAGE_KEYS.user, null);
   const fallbackUser: TelegramUser = telegramUser || {
-    id: 0,
+    id: 'me' as unknown as number,
     first_name: 'Вы',
   };
   const sender: Candidate = {

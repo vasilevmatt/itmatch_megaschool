@@ -130,7 +130,7 @@ const Chat: React.FC = () => {
             <div>
               <div className="chat-name">{chatPreview.user.firstName}</div>
               <div className="chat-subtitle">
-                Последнее сообщение{' '}
+                Был(а) в онлайне:{' '}
                 {new Date(chatPreview.updatedAt || Date.now()).toLocaleTimeString('ru-RU', {
                   hour: '2-digit',
                   minute: '2-digit'
@@ -147,13 +147,19 @@ const Chat: React.FC = () => {
             <p>Начните общение!</p>
           </div>
         ) : (
-          messages.map((message) => (
-            <MessageBubble
-              key={message._id}
-              message={message}
-              isOwn={message.sender._id === telegramUser?.id?.toString()}
-            />
-          ))
+          messages.map((message, index) => {
+            const myId = telegramUser?.id?.toString() ?? 'me';
+            const next = messages[index + 1];
+            const showAvatar = !next || next.sender._id !== message.sender._id;
+            return (
+              <MessageBubble
+                key={message._id}
+                message={message}
+                isOwn={message.sender._id === myId}
+                showAvatar={showAvatar}
+              />
+            );
+          })
         )}
         <div ref={messagesEndRef} />
       </div>

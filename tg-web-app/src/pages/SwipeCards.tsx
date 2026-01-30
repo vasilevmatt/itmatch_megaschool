@@ -11,6 +11,8 @@ const SwipeCards: React.FC = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [swiping, setSwiping] = useState(false);
+  const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null);
+  const [showHint, setShowHint] = useState(true);
 
   const loadLocalCandidates = () => {
     const data = getCachedCandidates(10);
@@ -20,32 +22,37 @@ const SwipeCards: React.FC = () => {
 
   const handleSwipe = async (liked: boolean) => {
     if (swiping || currentIndex >= candidates.length) return;
-    
+
     setSwiping(true);
+    setSwipeDirection(liked ? 'right' : 'left');
     const currentCandidate = candidates[currentIndex];
-    
-    try {
-      const result = await swipeCandidate(telegramUser?.id, currentCandidate._id, liked);
-      
-      if (result.matched) {
-        webApp?.HapticFeedback.notificationOccurred('success');
-        alert('🎉 Поздравляем! У вас новый матч!');
-      } else {
-        webApp?.HapticFeedback.impactOccurred('light');
+
+    // Дождёмся анимации, затем сдвинем стек
+    setTimeout(async () => {
+      try {
+        const result = await swipeCandidate(telegramUser?.id, currentCandidate._id, liked);
+        
+        if (result.matched) {
+          webApp?.HapticFeedback.notificationOccurred('success');
+          alert('🎉 Поздравляем! У вас новый матч!');
+        } else {
+          webApp?.HapticFeedback.impactOccurred('light');
+        }
+        
+        setCurrentIndex(prev => prev + 1);
+        setShowHint(false);
+        
+        if (currentIndex >= candidates.length - 3) {
+          loadLocalCandidates();
+        }
+      } catch (error) {
+        console.error('Ошибка свайпа:', error);
+        webApp?.HapticFeedback.notificationOccurred('error');
+      } finally {
+        setSwipeDirection(null);
+        setSwiping(false);
       }
-      
-      setCurrentIndex(prev => prev + 1);
-      
-      // Если осталось мало кандидатов, загружаем ещё
-      if (currentIndex >= candidates.length - 3) {
-        loadLocalCandidates();
-      }
-    } catch (error) {
-      console.error('Ошибка свайпа:', error);
-      webApp?.HapticFeedback.notificationOccurred('error');
-    } finally {
-      setSwiping(false);
-    }
+    }, 280);
   };
 
   useEffect(() => {
@@ -74,11 +81,18 @@ const SwipeCards: React.FC = () => {
 
   return (
     <div className="swipe-cards">
+      {showHint && (
+        <div className="swipe-hint">
+          <span>Свайпайте влево / вправо, чтобы выбирать</span>
+          <div className="swipe-hint-arrows">← →</div>
+        </div>
+      )}
       <div className="cards-container">
         <SwipeCard
           candidate={currentCandidate}
           onSwipe={handleSwipe}
           disabled={swiping}
+          swipeDirection={swipeDirection}
         />
         
         {/* Показываем следующую карточку сзади */}
@@ -91,28 +105,6 @@ const SwipeCards: React.FC = () => {
             />
           </div>
         )}
-      </div>
-      
-      <div className="swipe-actions">
-        <button 
-          className="action-btn dislike-btn"
-          onClick={() => handleSwipe(false)}
-          disabled={swiping}
-        >
-          ❌
-        </button>
-        
-        <button 
-          className="action-btn like-btn"
-          onClick={() => handleSwipe(true)}
-          disabled={swiping}
-        >
-          ❤️
-        </button>
-      </div>
-      
-      <div className="cards-counter">
-        {currentIndex + 1} / {candidates.length}
       </div>
     </div>
   );
